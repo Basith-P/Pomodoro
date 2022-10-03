@@ -14,8 +14,8 @@ LONG_BREAK_MIN = 20
 
 reps = 0
 
-# --------------- TIMER MECHANISM ---------------- #
 
+# --------------- TIMER MECHANISM ---------------- #
 
 def start_timer():
     global reps
@@ -27,16 +27,18 @@ def start_timer():
 
     if reps % 8 == 0:
         count_down(long_break_sec)
-        # title_label.config(text="Break", fg=RED)
+        title_label.config(text="Break", fg=RED)
+        check_marks.config(text="✔️" * (reps // 2))
     elif reps % 2 == 0:
         count_down(short_break_sec)
-        # title_label.config(text="Break", fg=PINK)
+        title_label.config(text="Break", fg=PINK)
+        check_marks.config(text="✔️" * (reps // 2))
     else:
         count_down(work_sec)
-        # title_label.config(text="Work", fg=GREEN)
+        title_label.config(text="Work", fg=GREEN)
+
 
 # --------------- COUNTDOWN MECHANISM ---------------- #
-
 
 def count_down(count):
     count_min = count // 60
@@ -56,9 +58,9 @@ window = Tk()
 window.title("Pomodoro")
 window.config(padx=100, pady=100, bg=PRIMARY_DARKEST)
 
-title = Label(text="Timer", fg=GREEN, bg=PRIMARY_DARKEST,
-              font=(FONT_NAME, 50, "bold"))
-title.grid(column=1, row=0)
+title_label = Label(text="Timer", fg=GREEN, bg=PRIMARY_DARKEST,
+                    font=(FONT_NAME, 50, "bold"))
+title_label.grid(column=1, row=0)
 
 
 canvas = Canvas(width=300, height=150, highlightthickness=0)
@@ -74,7 +76,7 @@ start_button.grid(column=0, row=2)
 reset_button = Button(text="Reset", highlightthickness=0)
 reset_button.grid(column=2, row=2)
 
-check_marks = Label(text="✔", fg=GREEN, bg=PRIMARY_DARKEST)
+check_marks = Label(text="", fg=GREEN, bg=PRIMARY_DARKEST)
 check_marks.grid(column=1, row=3)
 
 
